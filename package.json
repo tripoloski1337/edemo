@@ -1,0 +1,31 @@
+{
+  "name": "edemo",
+  "version": "1.0.0",
+  "description": "Final Assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripoloski1337/edemo.git"
+  },
+  "keywords": [
+    "gunadarma"
+  ],
+  "author": "tripoloski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tripoloski1337/edemo/issues"
+  },
+  "homepage": "https://github.com/tripoloski1337/edemo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.11.5",
+    "morgan": "^1.10.0",
+    "parser": "^0.1.4"
+  }
+}
