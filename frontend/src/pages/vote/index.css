@@ -1,0 +1,46 @@
+.container {
+	flex-direction: column;
+}
+
+.content > h1 {
+	margin-bottom: 2rem;
+}
+
+.vote {
+	text-align: center;
+	margin: 2rem 0;
+}
+
+.vote-desc {
+	font-weight: bold;
+}
+
+.input-nik {
+	font-size: 21px;
+	margin: 1rem 0;
+	margin-top: 1.8rem !important;
+	padding: 10px 14px;
+	border-radius: 8px;
+	width: 300px;
+	border: 1px solid #a7a7a7;
+}
+
+.btn-agree, .btn-disagree {
+	padding: 14px 16px;
+	width: 259px;
+	border: none;
+	border-radius: 10px;
+	font-weight: bolder;
+	color: white;
+	font-size: 24px;
+	margin: 1rem 3rem;
+	cursor: pointer;
+}
+
+.btn-agree {
+	background-color: #22BB33;
+}
+
+.btn-disagree {
+	background-color: #BB2124;
+}

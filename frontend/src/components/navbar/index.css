@@ -1,0 +1,27 @@
+.navbar {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #D23520;
+	color: #FFF;
+}
+
+.brand {
+	display: flex;
+	padding: 1rem;
+}
+
+.nav-item ul li {
+	list-style: none;
+	display: inline;
+	margin: 0.5rem 0.2rem;
+	padding: 0.8rem 1rem;
+	cursor: pointer;
+	transition: 0.2s
+}
+
+.nav-item ul li:hover, .active {
+	border-radius: 30px;
+	background-color: #DE6C5D;
+}
