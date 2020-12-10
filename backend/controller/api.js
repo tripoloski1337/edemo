@@ -52,14 +52,23 @@ exports.voting = function(req, res, next){
 
     user_data.find({nik:nik}, function(err, data1){
         if(err) throw err;
-        var x = new vote_data({
-            nik: nik,
-            id_ruu:ruuid,
-            vote:voted
-        });
-        x.save(function(err){
-            if(err) throw err;
-            res.json({msg:"oke"});
+        vote_data.find({nik:nik}, function(err2, data2){
+            if(err) throw err; 
+            if(data2.length > 0){
+                res.json({msg:"fail"});
+            }else if(data1.length == 1 ){
+                var x = new vote_data({
+                    nik: nik,
+                    id_ruu:ruuid,
+                    vote:voted
+                });
+                x.save(function(err){
+                    if(err) throw err;
+                    res.json({msg:"oke"});
+                })
+            }else{
+                res.json({msg:"fail"});
+            }
         })
     })
 }
