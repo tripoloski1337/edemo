@@ -1,39 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar';
+import axios from 'axios';
+import qs from 'qs';
+import isEmpty from 'lodash/isEmpty';
 import './index.css';
 
 export default function Vote({ location }) {
   const { payload } = location.state;
-  const [nik, setNik] = useState();
+  const [nik, setNik] = useState('');
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const caseSuccess = () => {
+      if (success) {
+        window.location.reload();
+      }
+    }
+
+    caseSuccess();
+  }, [success])
 
   const handleVote = async (vote) => {
     let data = { nik: nik, voted: vote };
-    const post = await fetch(`http://localhost:8000/vote/${payload._id}`, {
+    axios({
       method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type' : 'application/x-www-form-urlencoded'
-      },
-      body : data
-    });
-
-    if (post.ok) {
-      console.log('Success: ', post.json());
-    } else {
-      console.log('Error', post.json());
-    }
-
-    console.log(data)
+      url: `http://localhost:8000/vote/${payload._id}`,
+      data: qs.stringify(data),
+      Headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
+    })
+    .then((res) => {
+      if (res.statusText === "OK") {
+        setSuccess(true);
+        setError(false);
+      }
+    })
+    .catch((err) => {
+      setError(err);
+      setSuccess(false);
+    })
   }
 
-  console.log(payload._id)
+  // const successMsg = !isEmpty(success) && success ? alert('Berhasil Vote') : null;
+  // const failedMsg = !isEmpty(error) && error ? alert('Gagal Vote') : null;
   return (
     <div className="container">
       <Navbar vote="active" />
       <div className="content">
-        {/* <h1>Daftar Vote Anda</h1> */}
         <div className="vote text-center">
-          <img src="./imgs/document.svg" width="15%" alt="" /><br/>
+          <img src="./imgs/document.svg" width="13%" alt="" /><br/>
           <span>Baca draft UU.</span>
           <br/><br/><br/>
           <span className="vote-desc">{payload.agree} Orang setuju dengan UU {payload.nama}</span>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './index.css';
 import isEmpty from 'lodash/isEmpty';
 
@@ -46,24 +46,30 @@ export default function CardUU({ payload }) {
 
     const data = { ...store.payload, disagree, agree }
     history.push({
-      pathname: "/vote",
+      pathname: "/voting",
       state: { payload: data }
     })
+  }
+
+  const handleReadUU = () => {
+    window.location.href = "http://www.dpr.go.id/dokakd/dokumen/BALEG-RJ-20200605-100224-2372.pdf";
   }
 
   const payloadAgree = !isEmpty(agree) ? agree : 0;
   const payloadDisagree = !isEmpty(disagree) ? disagree : 0;
 
+  console.log(disagree)
+  console.log(payloadDisagree)
   return (
     <div className="item">
       <div>
         <h2 className="title">{payload.nama}</h2>
         <span>{payload.deskripsi}</span>
         <br/><br/>
-        <span className="agree">{payloadAgree} orang setuju</span>
-        <span className="disagree">{payloadDisagree} orang tidak setuju</span>
+        <span className="agree">{agree} orang setuju</span>
+        <span className="disagree">{disagree} orang tidak setuju</span>
       </div>
-      <div className="doc">
+      <div className="doc" onClick={handleReadUU}>
         <img src="./imgs/document.svg" width="30%" alt="" /><br/>
         <span>Baca Draft UU</span>
       </div>
